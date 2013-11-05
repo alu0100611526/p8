@@ -117,6 +117,13 @@ sum = 0
 
 end
 
+#Operador de comparacion (Modulo comparable). se comparan por la suma de sus componentes 
+	def <=> (other)
+		return nil unless other.instance_of?Matriz
+		(self.suma)<=>(other.suma)
+	end
+
+
 end
 
 

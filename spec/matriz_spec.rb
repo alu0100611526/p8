@@ -45,27 +45,27 @@ describe Matriz do
 #Comparaciones
 	describe "#Operadores de comparacion" do
 		it "Mayor que" do
-			@m1>@m2.should eq(false)
+			(@m1>@m2).should eq(false)
 		end
 
 		it "Menor que" do
-			@m1<@m2.should eq(false)
+			(@m1<@m2).should eq(false)
 		end
 
 		it "Mayor igual que" do
-			@m1>=@m2.should eq(true)
+			(@m1>=@m2).should eq(true)
 		end
 		
 		it "Menor igual que" do
-			@m1<=@m2.should eq(true)
+			(@m1<=@m2).should eq(true)
 		end
 
 		it "Igual que" do
-			@m1==@m2.should eq(true)
+			(@m1==@m2).should eq(true)
 		end
 
 		it "Distinto de" do
-			@m1!=@m2.should eq(false)
+			(@m1!=@m2).should eq(false)
 		end
 	end
 end
