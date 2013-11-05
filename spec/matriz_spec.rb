@@ -7,14 +7,13 @@ describe Matriz do
 
 	end
 
-		
-
 #Initialize
 	describe "#Inicializar la matriz" do
 		it "Se usa pos para acceder a los elementos" do
 			@m1.pos(0,2).should eq(3)
-			@m1.pos(3,3).should eq(9)
-			@m2.pos(2,1).should eq(4) 
+			@m1.pos(2,2).should eq(9)
+			@m2.pos(2,1).should eq(8) 
 		end
 	end
+	
 end
