@@ -1,4 +1,4 @@
-require "../lib/matriz.rb"
+require 'matriz'
 
 describe Matriz do
 	before :each do	
