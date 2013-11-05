@@ -20,23 +20,24 @@ describe Matriz do
 	describe "#Operaciones elementales" do
 
 		it "Se invoca a to_s" do 
-			@m1.to_s.should eq("1,2,3,4,5,6,7,8,9")
+			@m1.to_s.should eq("[[1, 2, 3], [4, 5, 6], [7, 8, 9]]")
 		end
 
 		it "Se invoca a suma" do 
-			@m1+@m2.to_s.should eq("2,4,6,8,10,12,14,16,18")
+			
+			(@m1+@m2).to_s().should eq("[[2, 4, 6], [8, 10, 12], [14, 16, 18]]")
 		end
 		
 		it "Se invoca a resta" do 
-			@m1-@m2.to_s.should eq("0,0,0,0,0,0,0,0,0")
+			(@m1-@m2).to_s().should eq("[[0, 0, 0], [0, 0, 0], [0, 0, 0]]")
 		end
 
 		it "Se invoca a multiplicacion" do 
-			@m1*@m2.to_s.should eq("30,36,42,66,81,96,102,126,150")
+			(@m1*@m2).to_s().should eq("[[30, 36, 42], [66, 81, 96], [102, 126, 150]]")
 		end
 
 		it "Suma de elementos" do 
-			@m1.suma.should eq(45)
+			@m1.suma().should eq(45)
 		end
 		
 	end
