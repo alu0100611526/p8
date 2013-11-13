@@ -1,10 +1,15 @@
 require 'matriz'
+require 'fraccion'
 
 describe Matriz do
 	before :each do	
+		f=
 		@m1 = Matriz.new(3,3,[1,2,3,4,5,6,7,8,9])
 		@m2 = Matriz.new(3,3,[1,2,3,4,5,6,7,8,9])
-
+		@m3 = Matriz.new(2,2,[Fraccion.new(1,2),Fraccion.new(1,3),Fraccion.new(1,4),Fraccion.new(1,5)])
+		@m4 = Matriz.new(2,2,[Fraccion.new(1,2),Fraccion.new(2,3),Fraccion.new(3,4),Fraccion.new(4,5)])
+		@mr1= Matriz.new(2,2,[Fraccion.new(1,1),Fraccion.new(1,1),Fraccion.new(1,1),Fraccion.new(1,1)])
+		@mr2= Matriz.new(2,2,[Fraccion.new(1,2),Fraccion.new(3,5),Fraccion.new(11,40),Fraccion.new(49,150)])
 	end
 
 #Initialize
@@ -68,4 +73,36 @@ describe Matriz do
 			(@m1!=@m2).should eq(false)
 		end
 	end
+
+#Modificacion
+	describe "#Operadores de comparacion" do
+		it "Suma fracciones" do
+			(@m3+@m4).to_s.should eq("[[1/1, 1/1], [1/1, 1/1]]")
+		end
+
+		it "Multiplicacion de fracciones" do
+			(@m3*@m4).to_s.should eq("[[1/2, 3/5], [11/40, 49/150]]")
+		end
+	end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

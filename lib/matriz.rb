@@ -1,3 +1,5 @@
+require 'fraccion'
+
 class Matriz
 attr_accessor :fil, :col , :mat
 include Comparable
@@ -10,20 +12,15 @@ def initialize(f, c, e)
 	    
 	    #inicializamos una matriz con todos sus valores a cero.
 	    @mat = Array.new(@fil.to_i){Array.new(@col.to_i)}
-	    
-		for i in (0...@fil.to_i)
-			for j in (0...@col.to_i)
-				@mat[i][j]=0;
-			end
-	    end
- 
-	    #Rellenamos la matriz con lo valores recibidos 
-	    for i in (0...@fil.to_i)
+
+	    if (e != nil)
+		#Rellenamos la matriz con lo valores recibidos 
+	    	for i in (0...@fil.to_i)
 			for j in (0...@col.to_i)
 				@mat[i][j]=e[i*@col.to_i+j];
 			end
+	    	end
 	    end
-
 	    
 end
 
@@ -45,7 +42,7 @@ end
 def +(other)	             
 	if (@fil == other.fil && @col == other.col)
 	                           
-		temp = Matriz.new(@fil,@col,[0,0,0,0,0,0,0,0,0])
+		temp = Matriz.new(@fil,@col,nil)
 	    
 		for i in (0...@fil.to_i)
 			for j in (0...@col.to_i)
@@ -66,7 +63,7 @@ def -(other)
 	                             
 	if (@fil == other.fil && @col == other.col)
 	                           
-		temp = Matriz.new(@fil,@col,[0,0,0,0,0,0,0,0,0])
+		temp = Matriz.new(@fil,@col,nil)
 	    
 		for i in (0...@fil.to_i)
 			for j in (0...@col.to_i)
@@ -85,16 +82,28 @@ end
 	                             
 #Sobrecarga del operador de multiplicación, recibe como parametros dos francciones y devuelve una fraccion con el resultado de la multiplicación
 def *(other)
-temp = Matriz.new(@fil,@col,[0,0,0,0,0,0,0,0,0])
-		 
 
-    if (@fil == other.col && @col == other.fil)             
-		
-		
+temp = Matriz.new(@fil,@col,nil)
+
+for i in (0...@fil.to_i)
+	for j in (0...@col.to_i)
+			if (self.mat[i][j].instance_of?Fraccion)
+				temp.mat[i][j] =  Fraccion.new(0,1)
+			else
+				temp.mat[i][j] = 0
+			end	
+	end	 
+end
+
+    if (@fil.to_i == other.col.to_i && @col.to_i == other.fil.to_i)             
 		for i in (0...@fil.to_i)
 			for j in (0...@col.to_i)
 				for k in (0...@col.to_i)
-					temp.mat[i][j] = temp.mat[i][j]+self.pos(i,k)*other.pos(k,j)
+					if (temp.mat[i][j].instance_of?Fraccion)
+						temp.mat[i][j].eq((temp.mat[i][j])+(self.mat[i][k])*(other.mat[k][j]))
+					else
+						temp.mat[i][j]=((temp.mat[i][j])+(self.mat[i][k])*(other.mat[k][j]))
+					end
 				end
 			end
 		end
